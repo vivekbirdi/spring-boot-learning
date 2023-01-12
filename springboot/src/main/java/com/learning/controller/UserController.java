@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.web.util.UriBuilder;
 
 import com.learning.dao.UserDao;
 import com.learning.dtos.User;
+import com.learning.springboot.exception.UserNotFoundException;
 
 /**
  * 
@@ -39,7 +39,11 @@ public class UserController {
 	
 	@GetMapping("/users/{userId}")
 	public User getUser(@PathVariable ("userId") int userId) {
-		return userDao.find(userId);
+		User user = userDao.find(userId);
+		if(user ==null) {
+			throw new UserNotFoundException("Requested user does not exist");
+		}
+		return user;
 	}
 	
 	@PostMapping("/createUser")
