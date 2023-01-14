@@ -37,6 +37,11 @@ public class UserDao {
 		return users.stream().filter(predicate).findFirst().orElse(null);
 	}
 	
+	public boolean delete(int userId) {
+		Predicate<User> predicate = user -> user.getUserId()==userId;
+		return users.removeIf(predicate);
+	}
+	
 	public User add(User user) {
 		user.setUserId(getNewId());
 		users.add(user);

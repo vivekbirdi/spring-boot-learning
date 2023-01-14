@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,5 +53,12 @@ public class UserController {
 		
 		URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/users/{userId}").buildAndExpand(user.getUserId()).toUri();
 		return ResponseEntity.created(location).body(user);
+	}
+	
+	@DeleteMapping("/users/{userId}")
+	public ResponseEntity<String> delelteUser(@PathVariable ("userId") int userId){
+		boolean deleted = userDao.delete(userId);
+		String message = deleted?"User deleted Successfully":" No such user";
+		return ResponseEntity.ok(message);
 	}
 }
