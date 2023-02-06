@@ -1,6 +1,7 @@
 package com.learning.dtos;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * 
@@ -13,7 +14,7 @@ public class ErrorDetailDto {
 	private String details;
 	private LocalDateTime dateTime;
 	
-	
+	private List<AppFieldError> errors; 
 	
 	public ErrorDetailDto() {
 
@@ -23,6 +24,8 @@ public class ErrorDetailDto {
 		this.details = details;
 		this.dateTime = dateTime;
 	}
+	
+	//getters and setters
 	public String getMessage() {
 		return message;
 	}
@@ -41,5 +44,11 @@ public class ErrorDetailDto {
 	public void setDateTime(LocalDateTime dateTime) {
 		this.dateTime = dateTime;
 	}
-		
+	public List<AppFieldError> getErrors() {
+		return errors;
+	}
+	public void setErrors(List<AppFieldError> errors) {
+		this.errors = errors;
+	}
+
 }

@@ -17,6 +17,8 @@ import com.learning.dao.UserDao;
 import com.learning.dtos.User;
 import com.learning.springboot.exception.UserNotFoundException;
 
+import jakarta.validation.Valid;
+
 /**
  * 
  * @author Vivek Birdi
@@ -48,7 +50,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/createUser")
-	public ResponseEntity<User> createUser(@RequestBody User user) {
+	public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
 		user = userDao.add(user);
 		
 		URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/users/{userId}").buildAndExpand(user.getUserId()).toUri();

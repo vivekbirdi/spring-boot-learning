@@ -2,6 +2,9 @@ package com.learning.dtos;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
+
 /**
  * 
  * @author Vivek Birdi
@@ -13,8 +16,11 @@ public class User {
 	// Unique identification for user entity
 	private int userId;
 	// Name of the User Entity
+	@Size(min = 4, max = 50, message = "Name field should have minimum 4 characters and maximum 50 characters")
 	private String name;
+	
 	// Birthday of the user.
+	@Past(message = "date of Birth should not be future date")
 	private LocalDate dateOfBirth;
 
 	public User() {
