@@ -46,6 +46,7 @@ public class UserController {
 		if(user ==null) {
 			throw new UserNotFoundException("Requested user does not exist");
 		}
+		
 		return user;
 	}
 	
