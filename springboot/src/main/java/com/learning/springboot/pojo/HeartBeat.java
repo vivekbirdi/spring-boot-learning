@@ -1,6 +1,5 @@
 package com.learning.springboot.pojo;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
